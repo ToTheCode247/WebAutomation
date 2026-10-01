@@ -47,7 +47,7 @@ npx playwright test --project=api
 npx playwright test --list
 ```
 
-Alternatively, npm scripts forward extra Playwright flags with `--`, for example `npm test -- --ui` or `npm run test:ui -- --project=chromium --headed`. The same commands work for anyone who clones the repository and installs dependencies; no GitHub Actions account is required.
+Alternatively, npm scripts forward extra Playwright flags with `--`, for example `npm run test:interactive -- tests/ui` or `npm run test:ui -- --project=chromium --headed`. The same commands work for anyone who clones the repository and installs dependencies; no GitHub Actions account is required.
 
 ## Running the tests
 
@@ -55,10 +55,10 @@ Playwright runs browser tests **headlessly by default**. Use `--headed` to displ
 
 | Mode | Command | Description |
 | --- | --- | --- |
-| All tests (headless) | `npm test` | UI tests in Chromium, Firefox and WebKit, plus API tests |
+| All tests (headless) | `npm run test:headless` | UI tests in Chromium, Firefox and WebKit, plus API tests |
 | UI tests (headless) | `npm run test:ui` | All browser UI tests without visible windows |
 | UI tests (headed) | `npm run test:headed` | Browser UI tests with visible browser windows |
-| Interactive UI runner | `npm run test:ui -- --ui` | Playwright Test UI to select, run and inspect UI tests |
+| Interactive UI runner (all projects) | `npm run test:interactive` | Playwright Test UI to select, run and inspect UI tests |
 | API tests only | `npm run test:api` | API happy-path and negative tests |
 | Smoke suite | `npm run test:smoke` | Tests tagged `@smoke` |
 | Regression suite | `npm run test:regression` | Tests tagged `@regression` |
@@ -73,7 +73,7 @@ Playwright runs browser tests **headlessly by default**. Use `--headed` to displ
 
 ```bash
 # Run everything headlessly (default)
-npm test
+npm run test:headless
 
 # Headless UI tests in Chromium only
 npm run test:ui -- --project=chromium
@@ -81,8 +81,8 @@ npm run test:ui -- --project=chromium
 # Display browser windows (all UI browser projects)
 npm run test:headed
 
-# Open Playwright's interactive testing UI
-npm run test:ui -- --ui
+# Open Playwright's interactive testing UI for all tests
+npm run test:interactive
 
 # Headless smoke tests in Chromium
 npm run test:smoke -- --project=chromium
