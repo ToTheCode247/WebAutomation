@@ -5,6 +5,8 @@
   "description": "Reusable Playwright and TypeScript web and API automation framework",
   "scripts": {
     "test": "playwright test",
+    "test:headless": "playwright test",
+    "test:interactive": "playwright test --ui",
     "test:ui": "playwright test tests/ui",
     "test:api": "playwright test tests/api",
     "test:smoke": "playwright test --grep @smoke",
