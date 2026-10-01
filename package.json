@@ -1,0 +1,28 @@
+{
+  "name": "webautomation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable Playwright and TypeScript web and API automation framework",
+  "scripts": {
+    "test": "playwright test",
+    "test:headless": "playwright test",
+    "test:interactive": "playwright test --ui",
+    "test:ui": "playwright test tests/ui",
+    "test:api": "playwright test tests/api",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:headed": "playwright test tests/ui --headed",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.15.0",
+    "dotenv": "^16.6.1",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
+  }
+}
