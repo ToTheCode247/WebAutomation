@@ -14,20 +14,60 @@ npm test
 
 Optionally copy `.env.example` to `.env` (PowerShell: `Copy-Item .env.example .env`) to override public demo URLs. The sample UI uses [Playwright TodoMVC](https://demo.playwright.dev/todomvc/) and API tests use [JSONPlaceholder](https://jsonplaceholder.typicode.com/), without requiring credentials.
 
-## Commands
+## Running the tests
+
+Playwright runs browser tests **headlessly by default**. Use `--headed` to display real browser windows, or `--ui` to open Playwright's interactive test runner. API tests do not open a browser.
+
+| Mode | Command | Description |
+| --- | --- | --- |
+| All tests (headless) | `npm test` | UI tests in Chromium, Firefox and WebKit, plus API tests |
+| UI tests (headless) | `npm run test:ui` | All browser UI tests without visible windows |
+| UI tests (headed) | `npm run test:headed` | Browser UI tests with visible browser windows |
+| Interactive UI runner | `npm run test:ui -- --ui` | Playwright Test UI to select, run and inspect UI tests |
+| API tests only | `npm run test:api` | API happy-path and negative tests |
+| Smoke suite | `npm run test:smoke` | Tests tagged `@smoke` |
+| Regression suite | `npm run test:regression` | Tests tagged `@regression` |
+| Chromium only | `npm test -- --project=chromium` | UI tests in Chromium |
+| Firefox only | `npm test -- --project=firefox` | UI tests in Firefox |
+| WebKit only | `npm test -- --project=webkit` | UI tests in WebKit |
+| Single spec | `npx playwright test tests/ui/todo.spec.ts` | Run one UI test file |
+| Debugger | `npm run test:debug` | Step through tests with Playwright Inspector |
+| HTML report | `npm run report` | Open the last HTML report |
+
+### Common examples
+
+```bash
+# Run everything headlessly (default)
+npm test
+
+# Headless UI tests in Chromium only
+npm run test:ui -- --project=chromium
+
+# Display browser windows (all UI browser projects)
+npm run test:headed
+
+# Open Playwright's interactive testing UI
+npm run test:ui -- --ui
+
+# Headless smoke tests in Chromium
+npm run test:smoke -- --project=chromium
+
+# Run API tests without browsers
+npm run test:api
+
+# View the HTML report after test execution
+npm run report
+```
+
+**Note:** `--headed` shows the tested browser; `--ui` opens Playwright's interactive test runner. They are different execution modes. If running on a server without a desktop, use headless mode.
+
+### Maintenance commands
 
 | Command | Purpose |
 | --- | --- |
-| `npm test` | UI tests in three browsers and API tests |
-| `npm run test:ui` | UI flows only |
-| `npm run test:api` | API happy path and negative test |
-| `npm run test:smoke` | Smoke tests |
-| `npm run test:regression` | Regression suite |
-| `npm run test:headed` | Visible browser |
 | `npm run typecheck` | Strict TypeScript validation |
 | `npm run format` | Format repository |
 | `npm run format:check` | Check formatting |
-| `npm run report` | View HTML report |
 
 ## Design
 
