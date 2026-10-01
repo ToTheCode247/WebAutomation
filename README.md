@@ -1,6 +1,6 @@
 # WebAutomation
 
-A reusable **Playwright + TypeScript** automation framework featuring Page Object Model, typed fixtures, independent UI/API tests, cross-browser projects, configurable environments, CI, and test evidence.
+A reusable **Playwright + TypeScript** automation framework featuring Page Object Model, typed fixtures, independent UI/API tests, cross-browser projects, configurable environments and test evidence.
 
 ## Quick start
 
@@ -45,10 +45,10 @@ Optionally copy `.env.example` to `.env` (PowerShell: `Copy-Item .env.example .e
          tests/data/todos.ts
 ```
 
-Each UI test receives an isolated browser context. Fixtures supply page objects, page objects encapsulate selectors, and tests express business scenarios rather than mechanics. Configuration provides overrideable UI/API endpoints; no secrets are committed. Retained-on-failure traces, videos and screenshots, plus JUnit and HTML reports, support CI diagnosis.
+Each UI test receives an isolated browser context. Fixtures supply page objects, page objects encapsulate selectors, and tests express business scenarios rather than mechanics. Configuration provides overrideable UI/API endpoints; no secrets are committed. Retained-on-failure traces, videos and screenshots, plus JUnit and HTML reports, support troubleshooting.
 
 `tests/ui/todo.spec.ts` demonstrates create/complete and create/delete workflows. `tests/api/posts.spec.ts` demonstrates typed client usage and a missing-resource check.
 
 To extend for your own application, add page objects or API clients, replace demo specs, and configure new application URLs via environment variables. Avoid arbitrary waits and share application authentication via fixtures/storage state when needed.
 
-**Note:** These are live integration examples; availability/behavior of the public demo services is outside this repository's control.
+**Execution:** Cloning this repository does not require GitHub Actions or the original maintainer's account. Run tests locally using the commands above. These are live integration examples; availability/behavior of the public demo services is outside this repository's control.
