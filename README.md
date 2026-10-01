@@ -14,6 +14,41 @@ npm test
 
 Optionally copy `.env.example` to `.env` (PowerShell: `Copy-Item .env.example .env`) to override public demo URLs. The sample UI uses [Playwright TodoMVC](https://demo.playwright.dev/todomvc/) and API tests use [JSONPlaceholder](https://jsonplaceholder.typicode.com/), without requiring credentials.
 
+## Direct Playwright CLI
+
+**Execution mode and test selection are independent.** By default, `npx playwright test` runs every configured project headlessly (browser UI projects and API tests). Add `--ui`, `--headed` or `--debug` to choose how to launch tests; provide a test path or `--project` to narrow the selection. The API project does not launch a browser.
+
+```bash
+# All configured projects, headless (default)
+npx playwright test
+
+# Interactive Playwright UI runner (choose tests and inspect executions)
+npx playwright test --ui
+
+# Headed run: opens browser windows for browser projects
+npx playwright test --headed
+
+# Debug selected UI module
+npx playwright test tests/ui --debug
+
+# Specific module in interactive UI
+npx playwright test tests/ui --ui
+
+# A specific spec in headed Chromium
+npx playwright test tests/ui/todo.spec.ts --project=chromium --headed
+
+# Browser UI tests only, headless
+npx playwright test tests/ui
+
+# API tests only
+npx playwright test --project=api
+
+# List the tests without executing
+npx playwright test --list
+```
+
+Alternatively, npm scripts forward extra Playwright flags with `--`, for example `npm test -- --ui` or `npm run test:ui -- --project=chromium --headed`. The same commands work for anyone who clones the repository and installs dependencies; no GitHub Actions account is required.
+
 ## Running the tests
 
 Playwright runs browser tests **headlessly by default**. Use `--headed` to display real browser windows, or `--ui` to open Playwright's interactive test runner. API tests do not open a browser.
